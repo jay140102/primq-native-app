@@ -1,7 +1,9 @@
-import { MarketsSegmentTabs } from "@/components/MarketsSegmentTabs";
-import { MarketsTopBar } from "@/components/MarketsTopBar";
-import { ScreenBackground } from "@/components/ScreenBackground";
-import { SideMenu } from "@/components/SideMenu";
+import {
+  MarketsSegmentTabs,
+  MarketsTopBar,
+  ScreenBackground,
+  SideMenu,
+} from "@primq/ui";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";

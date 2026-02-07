@@ -12,17 +12,17 @@
         "lint": "turbo run lint",
         "clean": "turbo run clean",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "mobile": "pnpm --filter @primq/mobile dev",
-        "web": "pnpm --filter @primq/web dev"
+        "mobile": "pnpm --filter @primq/mobile start",
+        "mobile:npm": "npm run --workspace @primq/mobile start",
+        "web": "pnpm --filter @primq/web dev",
+        "web:npm": "npm run --workspace @primq/web dev"
     },
     "devDependencies": {
         "prettier": "^3.2.5",
         "turbo": "^2.3.3",
         "typescript": "~5.9.2"
     },
-    "packageManager": "pnpm@9.1.0",
     "engines": {
-        "node": ">=18.0.0",
-        "pnpm": ">=9.0.0"
+        "node": ">=18.0.0"
     }
 }

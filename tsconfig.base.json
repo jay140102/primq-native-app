@@ -1,0 +1,46 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "commonjs",
+        "lib": [
+            "ES2020"
+        ],
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": {
+            "@primq/ui": [
+                "./packages/ui/src/index.ts"
+            ],
+            "@primq/ui/*": [
+                "./packages/ui/src/*"
+            ],
+            "@primq/hooks": [
+                "./packages/hooks/src/index.ts"
+            ],
+            "@primq/hooks/*": [
+                "./packages/hooks/src/*"
+            ],
+            "@primq/api": [
+                "./packages/api/src/index.ts"
+            ],
+            "@primq/api/*": [
+                "./packages/api/src/*"
+            ],
+            "@primq/types": [
+                "./packages/types/src/index.ts"
+            ],
+            "@primq/types/*": [
+                "./packages/types/src/*"
+            ],
+            "@primq/config/*": [
+                "./packages/config/*"
+            ]
+        }
+    }
+}

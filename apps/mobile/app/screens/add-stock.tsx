@@ -1,4 +1,4 @@
-import { ScreenBackground } from "@/components/ScreenBackground";
+import { ScreenBackground } from "@primq/ui";
 import { useStocks } from "@/contexts/StocksContext";
 import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";

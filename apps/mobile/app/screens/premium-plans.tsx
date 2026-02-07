@@ -1,4 +1,4 @@
-import { ScreenBackground } from "@/components/ScreenBackground";
+import { ScreenBackground } from "@primq/ui";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";

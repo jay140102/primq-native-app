@@ -1,10 +1,13 @@
-import { AddPortfolioModal } from "@/components/AddPortfolioModal";
-import { MarketsSegmentTabs } from "@/components/MarketsSegmentTabs";
-import { MarketsTopBar } from "@/components/MarketsTopBar";
-import type { Portfolio } from "@/components/PortfolioDropdown";
-import { QuoteCard, type Quote } from "@/components/QuoteCard";
-import { ScreenBackground } from "@/components/ScreenBackground";
-import { SideMenu } from "@/components/SideMenu";
+import {
+  AddPortfolioModal,
+  MarketsSegmentTabs,
+  MarketsTopBar,
+  QuoteCard,
+  ScreenBackground,
+  SideMenu,
+  type Portfolio,
+  type Quote,
+} from "@primq/ui";
 import { useStocks } from "@/contexts/StocksContext";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -246,6 +249,10 @@ export default function MarketsQuotesScreen() {
         onPressPremium={() => {
           setMenuOpen(false);
           router.push("/screens/premium-plans");
+        }}
+        onPressAcademy={() => {
+          setMenuOpen(false);
+          router.push("/(tabs)/academy");
         }}
         portfolios={portfolios}
         selectedPortfolioId={selectedPortfolioId}

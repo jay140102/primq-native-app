@@ -62,16 +62,6 @@ const _layout = () => {
         }}
       />
       <Tabs.Screen
-        name="academy"
-        options={{
-          headerShown: false,
-          title: "Academy",
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.play} title="Academy" />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="profile"
         options={{
           headerShown: false,
@@ -79,6 +69,14 @@ const _layout = () => {
           tabBarIcon: ({ focused }) => (
             <TabIcon focused={focused} icon={icons.person} title="Profile" />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="academy"
+        options={{
+          href: null, // Hide from tab bar
+          headerShown: false,
+          title: "Academy",
         }}
       />
     </Tabs>

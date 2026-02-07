@@ -43,8 +43,14 @@ pnpm install
 ### Development
 
 ```bash
-# Run mobile app
+# Run mobile app (starts Expo development server)
 pnpm mobile
+
+# Run mobile app on Android
+pnpm --filter @primq/mobile android
+
+# Run mobile app on iOS
+pnpm --filter @primq/mobile ios
 
 # Run web app (when implemented)
 pnpm web
@@ -106,6 +112,32 @@ Placeholder Dockerfiles for production builds:
 - `pnpm clean` - Clean all build artifacts
 - `pnpm mobile` - Run mobile app
 - `pnpm web` - Run web app
+
+## Troubleshooting
+
+### Android Build Issues on Windows
+
+If you encounter build errors related to path length or missing NODE_ENV:
+
+1. **Path Length Issues**: The project includes a `.npmrc` file configured to use hoisted dependencies, which helps avoid Windows MAX_PATH limitations.
+
+2. **Clean the Android build** (recommended first step):
+   ```bash
+   cd apps\mobile\android
+   .\gradlew.bat clean
+   cd ..\..\..
+   ```
+
+3. **NODE_ENV errors**: The `gradle.properties` file is now configured with NODE_ENV. Try building again:
+   ```bash
+   pnpm --filter @primq/mobile android
+   ```
+
+4. **If you need to reinstall dependencies** (for new clones or major updates):
+   - The `.npmrc` configuration will automatically use hoisted structure
+   - Simply run: `pnpm install`
+
+5. **Emulator issues**: If the emulator quits before opening, start it manually from Android Studio before running the build command.
 
 ## License
 
