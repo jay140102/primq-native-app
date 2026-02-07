@@ -254,6 +254,10 @@ export default function MarketsQuotesScreen() {
           setMenuOpen(false);
           router.push("/(tabs)/academy");
         }}
+        onPressProfile={() => {
+          setMenuOpen(false);
+          router.push("/(tabs)/profile");
+        }}
         portfolios={portfolios}
         selectedPortfolioId={selectedPortfolioId}
         onSelectPortfolio={setSelectedPortfolioId}

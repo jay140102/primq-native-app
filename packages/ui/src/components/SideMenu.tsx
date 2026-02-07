@@ -15,6 +15,7 @@ type SideMenuProps = {
   onClose: () => void;
   onPressPremium?: () => void;
   onPressAcademy?: () => void;
+  onPressProfile?: () => void;
   portfolios?: Portfolio[];
   selectedPortfolioId?: string;
   onSelectPortfolio?: (portfolioId: string) => void;
@@ -55,6 +56,7 @@ export function SideMenu({
   onClose,
   onPressPremium,
   onPressAcademy,
+  onPressProfile,
   portfolios = [],
   selectedPortfolioId = "",
   onSelectPortfolio,
@@ -111,14 +113,20 @@ export function SideMenu({
           contentContainerStyle={{ flexGrow: 1 }}
         >
           <View className="flex-row items-start justify-between px-5 pt-6">
-            <View className="flex-row items-center">
+            <Pressable
+              onPress={() => {
+                onPressProfile?.();
+                onClose();
+              }}
+              className="flex-row items-center flex-1"
+            >
               <View className="h-14 w-14 rounded-full bg-[#3D84FF] items-center justify-center">
                 <Text className="text-white text-[18px] font-semibold">JP</Text>
               </View>
               <View className="h-3 w-3 rounded-full bg-[#2EE5A2] -ml-3 mt-9 border-2 border-[#0F0D23]" />
 
-              <View className="ml-4">
-                <Text className="text-white text-[22px] font-semibold">
+              <View className="ml-4 flex-1">
+                <Text className="text-white text-[22px] font-semibold" numberOfLines={1}>
                   Jay Pratap Singh
                 </Text>
                 <View className="flex-row items-center mt-1">
@@ -130,13 +138,13 @@ export function SideMenu({
                   </Text>
                 </View>
               </View>
-            </View>
+            </Pressable>
 
             <Pressable
               accessibilityRole="button"
               hitSlop={10}
               onPress={onClose}
-              className="h-10 w-10 items-center justify-center"
+              className="h-10 w-10 items-center justify-center -mr-2"
             >
               <Text style={{ color: "#A8B5DB", fontSize: 22, lineHeight: 22 }}>
                 ×
