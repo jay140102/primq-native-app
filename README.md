@@ -113,31 +113,52 @@ Placeholder Dockerfiles for production builds:
 - `pnpm mobile` - Run mobile app
 - `pnpm web` - Run web app
 
-## Troubleshooting
+### Android Build on Windows (WSL2 Recommended)
 
-### Android Build Issues on Windows
+Building the Android app directly on Windows is **not recommended** due to path length limitations (MAX_PATH = 260 characters) which conflict with `pnpm` and Gradle/CMake.
 
-If you encounter build errors related to path length or missing NODE_ENV:
+#### Setup WSL2 Environment
 
-1. **Path Length Issues**: The project includes a `.npmrc` file configured to use hoisted dependencies, which helps avoid Windows MAX_PATH limitations.
-
-2. **Clean the Android build** (recommended first step):
+1. **Prerequisites in WSL2 (Ubuntu 24.04 recommended)**:
    ```bash
-   cd apps\mobile\android
-   .\gradlew.bat clean
-   cd ..\..\..
+   # Install Java 17
+   sudo apt update && sudo apt install -y openjdk-17-jdk unzip
+
+   # Setup pnpm and Node 20
+   curl -fsSL https://get.pnpm.io/install.sh | sh -
+   nvm install 20 && nvm alias default 20
    ```
 
-3. **NODE_ENV errors**: The `gradle.properties` file is now configured with NODE_ENV. Try building again:
+2. **Android SDK in WSL2**:
    ```bash
-   pnpm --filter @primq/mobile android
+   # Download cmdline-tools and setup ANDROID_HOME
+   # (Refer to implementation logs for detailed command sequence)
    ```
 
-4. **If you need to reinstall dependencies** (for new clones or major updates):
-   - The `.npmrc` configuration will automatically use hoisted structure
-   - Simply run: `pnpm install`
+3. **ADB Bridge (Connect Physical Device)**:
+   Since the device is connected to Windows, but the build happens in WSL2, you must bridge ADB:
+   ```bash
+   # In WSL2, create an ADB wrapper that points to Windows adb.exe
+   sudo sh -c 'echo "#!/bin/bash\n/mnt/c/Users/jay/AppData/Local/Android/Sdk/platform-tools/adb.exe \"\$@\"" > /usr/local/bin/adb'
+   sudo chmod +x /usr/local/bin/adb
+   ```
 
-5. **Emulator issues**: If the emulator quits before opening, start it manually from Android Studio before running the build command.
+4. **pnpm Configuration**:
+   Create a `.npmrc` file in the root directory to fix dependency resolution issues:
+   ```ini
+   node-linker=hoisted
+   ```
+
+5. **Run the Build**:
+   ```bash
+   cd apps/mobile
+   pnpm install
+   pnpm android -- --tunnel
+   ```
+
+## License
+
+Private
 
 ## License
 
